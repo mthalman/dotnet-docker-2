@@ -14,29 +14,17 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create Fork
-        uses: actions/github-script@v6
-        with:
-          script: |
-            const github = require('@actions/github');
-            const core = require('@actions/core');
-            const token = core.getInput('GITHUB_TOKEN');
-            const octokit = github.getOctokit(token);
-            const [owner, repo] = process.env.REPOSITORY.split('/');
-            const fork = await octokit.rest.repos.createFork({
-              owner: owner,
-              repo: repo,
-            });
-            core.setOutput('fork-full-name', fork.data.full_name);
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPOSITORY: 'original-owner/original-repo'
+        run: |
+          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+          gh repo fork mthalman/dotnet-docker
+          //echo "fork-full-name=$(gh repo view mthalman/dotnet-docker --json parent --jq '.parent.owner.login + \"/\" + .parent.name')" >> $GITHUB_ENV
 
-      - name: Checkout Fork
-        uses: actions/checkout@v2
-        with:
-          repository: ${{ steps.create-fork.outputs.fork-full-name }}
+      # - name: Checkout Fork
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: ${{ env.fork-full-name }}
 
-      - name: Run Renovate
-        uses: renovatebot/github-action@v41.0.13
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Run Renovate
+      #   uses: renovatebot/github-action@v41.0.13
+      #   with:
+      #     token: ${{ secrets.GITHUB_TOKEN }}
