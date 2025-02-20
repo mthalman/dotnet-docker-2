@@ -1,5 +1,8 @@
 name: Fork and Run Renovate
 
+permissions:
+  contents: read
+
 on:
   workflow_dispatch:
 
@@ -7,11 +10,17 @@ jobs:
   fork-and-renovate:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
       - name: Create Fork
         uses: actions/github-script@v6
         with:
           script: |
-            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+            const github = require('@actions/github');
+            const core = require('@actions/core');
+            const token = core.getInput('GITHUB_TOKEN');
+            const octokit = github.getOctokit(token);
             const [owner, repo] = process.env.REPOSITORY.split('/');
             const fork = await octokit.rest.repos.createFork({
               owner: owner,
