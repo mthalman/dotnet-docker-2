@@ -1,0 +1,33 @@
+name: Fork and Run Renovate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  fork-and-renovate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Fork
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const octokit = github.getOctokit(process.env.GITHUB_TOKEN);
+            const [owner, repo] = process.env.REPOSITORY.split('/');
+            const fork = await octokit.rest.repos.createFork({
+              owner: owner,
+              repo: repo,
+            });
+            core.setOutput('fork-full-name', fork.data.full_name);
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: 'original-owner/original-repo'
+
+      - name: Checkout Fork
+        uses: actions/checkout@v2
+        with:
+          repository: ${{ steps.create-fork.outputs.fork-full-name }}
+
+      - name: Run Renovate
+        uses: renovatebot/github-action@v41.0.13
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
