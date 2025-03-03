@@ -21,9 +21,6 @@ jobs:
           RENOVATE_REPOSITORIES: ${{ github.repository }}
           LOG_LEVEL: debug
           RENOVATE_FORK_TOKEN: ${{ secrets.FORK_PAT }}
-          
-          # Necessary to target my fork of dotnet/dotnet-docker
-          RENOVATE_FORK_PROCESSING: enabled
         with:
           configurationFile: .github/renovate.json
           token: ${{ secrets.GITHUB_TOKEN }}
