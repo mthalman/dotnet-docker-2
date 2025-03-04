@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM mcr.microsoft.com/azurelinux/base/core:3.0 AS installer
+FROM mcr.microsoft.com/azurelinux/base/core:3.0@sha256:7caf6bede8a3fa62340581a6e5409ede9564b6866d18143ffd0b691c8f2cfcfc AS installer
 
 RUN tdnf install -y \
         ca-certificates \
@@ -23,7 +23,7 @@ RUN mkdir /dotnet-symlink \
 
 
 # ASP.NET Composite Image
-FROM $REPO:9.0.2-azurelinux3.0-distroless-extra-amd64
+FROM $REPO:9.0.2-azurelinux3.0-distroless-extra-amd64@sha256:6be11ff36cbe594b3b0108d31c59623b954218941c01a5787d5f70da79201eba
 
 ENV \
     # .NET Runtime version

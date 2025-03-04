@@ -1,4 +1,4 @@
-FROM ubuntu.azurecr.io/ubuntu:noble
+FROM ubuntu.azurecr.io/ubuntu:noble@sha256:562b04c2e7aedb72b0f919d659f6c607087f839d584037f096d9cd97b308006e
 
 ENV \
     # UID of the non-root user 'app'

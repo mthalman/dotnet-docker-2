@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM arm64v8/buildpack-deps:jammy-curl AS installer
+FROM arm64v8/buildpack-deps:jammy-curl@sha256:07b40ebd2042f108df1754be054182d9be17ff062c45d3b1182b3a6436a2ea55 AS installer
 
 # Retrieve .NET Runtime
 RUN dotnet_version=8.0.13 \
@@ -17,7 +17,7 @@ RUN mkdir /dotnet-symlink \
 
 
 # .NET runtime image
-FROM $REPO:8.0.13-jammy-chiseled-extra-arm64v8
+FROM $REPO:8.0.13-jammy-chiseled-extra-arm64v8@sha256:41c0e931df8fd6e56bbabb4dca3e491f9ab02f8f4effa6c5ed7cdbd7239bd408
 
 # .NET Runtime version
 ENV DOTNET_VERSION=8.0.13

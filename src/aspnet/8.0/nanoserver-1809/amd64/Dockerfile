@@ -3,7 +3,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime
 
 # Installer image
-FROM mcr.microsoft.com/windows/servercore:1809-amd64 AS installer
+FROM mcr.microsoft.com/windows/servercore:1809-amd64@sha256:7a52edfa3a431d8758e70a42d96a6f3b5bd90865ffcc2e0b9222f3560062cb5a AS installer
 
 # Install ASP.NET Core Runtime
 RUN powershell -Command `
@@ -24,7 +24,7 @@ RUN powershell -Command `
 
 
 # ASP.NET Core image
-FROM $REPO:8.0.13-nanoserver-1809
+FROM $REPO:8.0.13-nanoserver-1809@sha256:d9b732aa17026e20169d7d0840de5779daa1fb529ad5ce1c052a4eb02fd9bf5b
 
 # ASP.NET Core version
 ENV ASPNET_VERSION=8.0.13

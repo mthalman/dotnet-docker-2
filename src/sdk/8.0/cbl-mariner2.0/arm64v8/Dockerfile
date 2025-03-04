@@ -1,5 +1,5 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:8.0.13-cbl-mariner2.0-arm64v8
+FROM $REPO:8.0.13-cbl-mariner2.0-arm64v8@sha256:fe508c7b82d80a133b982231e0179967842f505cf6a5ef6ab7669e287fc6a889
 
 ENV \
     # Do not generate certificate

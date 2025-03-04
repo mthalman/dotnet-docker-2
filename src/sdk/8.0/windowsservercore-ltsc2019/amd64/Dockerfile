@@ -1,7 +1,7 @@
 # escape=`
 
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:8.0.13-windowsservercore-ltsc2019
+FROM $REPO:8.0.13-windowsservercore-ltsc2019@sha256:5d3e18015ca3aafe4019793d34d6ad82c41e16a105f25a9fd5f4cab691c5c874
 
 ENV `
     # Do not generate certificate

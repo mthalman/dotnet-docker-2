@@ -1,6 +1,6 @@
 # Learn about building .NET container images:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-noble AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-noble@sha256:12e2373b9ea6f904e0d255a54e65eae31d78ae542dc612baa01fe59198e3e22a AS build
 ARG TARGETARCH
 WORKDIR /source
 
@@ -14,7 +14,7 @@ RUN dotnet publish -a $TARGETARCH --no-restore -o /app
 
 
 # Runtime stage
-FROM mcr.microsoft.com/dotnet/nightly/aspnet:9.0-noble-chiseled-composite
+FROM mcr.microsoft.com/dotnet/nightly/aspnet:9.0-noble-chiseled-composite@sha256:b5252e786591895dfc0d1335e20a213be5c1e38c346dd4d58eed5da996e4bf93
 EXPOSE 8080
 WORKDIR /app
 COPY --link --from=build /app .

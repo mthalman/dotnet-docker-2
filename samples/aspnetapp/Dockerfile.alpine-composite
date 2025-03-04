@@ -1,6 +1,6 @@
 # Learn about building .NET container images:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-alpine@sha256:c439a8d5fef241d04858145e777a460ec0e6c8fec8e518b41cdee4e37321f306 AS build
 ARG TARGETARCH
 WORKDIR /source
 
@@ -16,7 +16,7 @@ RUN dotnet publish -a $TARGETARCH --no-restore -o /app
 # Enable globalization and time zones:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/enable-globalization.md
 # Runtime stage
-FROM mcr.microsoft.com/dotnet/nightly/aspnet:9.0-alpine-composite
+FROM mcr.microsoft.com/dotnet/nightly/aspnet:9.0-alpine-composite@sha256:638930e700cbbc8205cb7846676db81baec0e7dd8c47f6974f5c2b48e7c30177
 EXPOSE 8080
 WORKDIR /app
 COPY --link --from=build /app .

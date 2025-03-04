@@ -3,7 +3,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
 
 # Installer image
-FROM mcr.microsoft.com/windows/servercore:ltsc2025-amd64 AS installer
+FROM mcr.microsoft.com/windows/servercore:ltsc2025-amd64@sha256:cd61ef2ef2be1cd20e06686d3b554843e5d713017037e108788ad3417ff981c1 AS installer
 
 # Download MinGit
 RUN powershell -Command " `
@@ -56,7 +56,7 @@ RUN powershell -Command " `
             | Remove-Item -Force -Recurse"
 
 # SDK image
-FROM $REPO:9.0.2-nanoserver-ltsc2025
+FROM $REPO:9.0.2-nanoserver-ltsc2025@sha256:7f129912dbd281964c22e13c48a5de7a9c2d97856f184880ee49ad56c2c2b7b8
 
 ENV `
     # Do not generate certificate

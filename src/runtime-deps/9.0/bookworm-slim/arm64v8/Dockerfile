@@ -1,4 +1,4 @@
-FROM arm64v8/debian:bookworm-slim
+FROM arm64v8/debian:bookworm-slim@sha256:f04357b19d59af82a240ab4440f36c82dd42532541b99cf859690504371f8aba
 
 ENV \
     # UID of the non-root user 'app'

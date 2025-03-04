@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/monitor/base
 
 # Installer image
-FROM amd64/buildpack-deps:jammy-curl AS installer
+FROM amd64/buildpack-deps:jammy-curl@sha256:552e33e44f19a79219858ab0e7789e5345c502bede991fbf435f51640d4c7e2d AS installer
 
 # Retrieve .NET Monitor extensions
 RUN dotnet_monitor_extension_version=8.1.0 \
@@ -21,6 +21,6 @@ RUN dotnet_monitor_extension_version=8.1.0 \
 
 
 # .NET Monitor image
-FROM $REPO:8.1.0-ubuntu-chiseled-amd64
+FROM $REPO:8.1.0-ubuntu-chiseled-amd64@sha256:029edbd01520a6ee84bc1c92d897c25cd04cb8168a90a20e58a571f5b3c8b6a4
 
 COPY --from=installer ["/app", "/app"]

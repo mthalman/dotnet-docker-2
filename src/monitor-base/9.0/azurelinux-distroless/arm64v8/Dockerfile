@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
 
 # Installer image
-FROM mcr.microsoft.com/azurelinux/base/core:3.0 AS installer
+FROM mcr.microsoft.com/azurelinux/base/core:3.0@sha256:7caf6bede8a3fa62340581a6e5409ede9564b6866d18143ffd0b691c8f2cfcfc AS installer
 
 RUN tdnf install -y \
         ca-certificates \
@@ -20,7 +20,7 @@ RUN dotnet_monitor_version=9.0.2 \
 
 
 # .NET Monitor Base image
-FROM $REPO:9.0.2-azurelinux3.0-distroless-arm64v8
+FROM $REPO:9.0.2-azurelinux3.0-distroless-arm64v8@sha256:bf023ec488b0e7015bdf23b92f222dffd24cefa7f3bc8e4fdeb00428556b14ec
 
 WORKDIR /app
 COPY --from=installer /app .

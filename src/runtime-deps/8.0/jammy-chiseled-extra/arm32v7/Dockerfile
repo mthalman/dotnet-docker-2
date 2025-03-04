@@ -1,4 +1,4 @@
-FROM arm32v7/buildpack-deps:jammy-curl AS chisel
+FROM arm32v7/buildpack-deps:jammy-curl@sha256:d44b9c225547b3b2ef90485327c66aeecd10469b9181c23ec31f3452ed41eb06 AS chisel
 
 RUN apt-get update && apt-get install -y file
 

@@ -3,7 +3,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
 
 # Installer image
-FROM mcr.microsoft.com/windows/servercore:1809-amd64 AS installer
+FROM mcr.microsoft.com/windows/servercore:1809-amd64@sha256:7a52edfa3a431d8758e70a42d96a6f3b5bd90865ffcc2e0b9222f3560062cb5a AS installer
 
 # Download MinGit
 RUN powershell -Command " `
@@ -56,7 +56,7 @@ RUN powershell -Command " `
             | Remove-Item -Force -Recurse"
 
 # SDK image
-FROM $REPO:9.0.2-nanoserver-1809
+FROM $REPO:9.0.2-nanoserver-1809@sha256:7a55aa602e8e1a2903eeb0d196932c3fdaa9cf766ff5a6a2733c45da66ec92dd
 
 ENV `
     # Do not generate certificate

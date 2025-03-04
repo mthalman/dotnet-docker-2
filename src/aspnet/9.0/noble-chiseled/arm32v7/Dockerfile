@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime
 
 # Installer image
-FROM arm32v7/buildpack-deps:jammy-curl AS installer
+FROM arm32v7/buildpack-deps:jammy-curl@sha256:d44b9c225547b3b2ef90485327c66aeecd10469b9181c23ec31f3452ed41eb06 AS installer
 
 # Retrieve ASP.NET Core
 RUN aspnetcore_version=9.0.2 \
@@ -14,7 +14,7 @@ RUN aspnetcore_version=9.0.2 \
 
 
 # ASP.NET Core image
-FROM $REPO:9.0.2-noble-chiseled-arm32v7
+FROM $REPO:9.0.2-noble-chiseled-arm32v7@sha256:6bfb64757795fa08d57c6e952a59586ab547fefabeac6c954228f661a3f505a2
 
 # ASP.NET Core version
 ENV ASPNET_VERSION=9.0.2

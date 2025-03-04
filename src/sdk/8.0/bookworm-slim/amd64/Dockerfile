@@ -1,5 +1,5 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:8.0.13-bookworm-slim-amd64
+FROM $REPO:8.0.13-bookworm-slim-amd64@sha256:c85f30300d7c35c9a3b685a379642c014e3c634ef64699525d7b020eac0737c9
 
 ENV \
     # Do not generate certificate

@@ -1,7 +1,7 @@
-# syntax=docker/dockerfile:1
+# syntax=docker/dockerfile:1@sha256:93bfd3b68c109427185cd78b4779fc82b484b0b7618e36d0f104d4d801e66d25
 # Learn about building .NET container images:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
-FROM mcr.microsoft.com/dotnet/nightly/sdk:9.0-alpine-aot AS build
+FROM mcr.microsoft.com/dotnet/nightly/sdk:9.0-alpine-aot@sha256:cd166ffa5e0bfeeb07d112f0dd2a3bdaa66a19d085274b878f1c9faecef35012 AS build
 ARG TARGETARCH
 WORKDIR /source
 
@@ -18,7 +18,7 @@ RUN rm /app/*.dbg /app/*.Development.json
 
 
 # Final stage/image
-FROM mcr.microsoft.com/dotnet/nightly/runtime-deps:9.0-alpine-aot
+FROM mcr.microsoft.com/dotnet/nightly/runtime-deps:9.0-alpine-aot@sha256:35605a97ed21432263232b575c03e093669e92fd357b1c60127ad6b8ba1963b1
 
 WORKDIR /app
 COPY --link --from=build /app .

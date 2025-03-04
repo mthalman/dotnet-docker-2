@@ -1,5 +1,5 @@
 # Installer image
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0 AS installer
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0@sha256:2a5d3461de4c082b1ced83a491c0d83b80221311dbee1b6f0a98271cefe57b00 AS installer
 
 RUN tdnf install -y \
         gawk \
@@ -20,7 +20,7 @@ RUN mkdir /staging \
     && tdnf clean all --releasever=2.0 --installroot /staging
 
 # Generate RPM manifest file by appending to the original manifest file from base distroless image
-COPY --from=mcr.microsoft.com/cbl-mariner/distroless/minimal:2.0 /var/lib/rpmmanifest/container-manifest-2 /tmp/rpmmanifest
+COPY --from=mcr.microsoft.com/cbl-mariner/distroless/minimal:2.0@sha256:6989c162e941656f8a6d00f1176a20a2f1ff261232fd01ec717d1ea0baff6cdb /var/lib/rpmmanifest/container-manifest-2 /tmp/rpmmanifest
 RUN tmpManifestPath="/tmp/rpmmanifest" \
     && rpm --query --all --queryformat "%{NAME}\t%{VERSION}-%{RELEASE}\t%{INSTALLTIME}\t%{BUILDTIME}\t%{VENDOR}\t%{EPOCH}\t%{SIZE}\t%{ARCH}\t%{EPOCHNUM}\t%{SOURCERPM}\n" --root /staging | grep -v gpg-pubkey >> $tmpManifestPath \
     && mkdir -p /staging/var/lib/rpmmanifest \
@@ -53,7 +53,7 @@ RUN rm -rf /staging/etc/tdnf \
 
 
 # .NET runtime-deps image
-FROM mcr.microsoft.com/cbl-mariner/distroless/minimal:2.0
+FROM mcr.microsoft.com/cbl-mariner/distroless/minimal:2.0@sha256:6989c162e941656f8a6d00f1176a20a2f1ff261232fd01ec717d1ea0baff6cdb
 
 ENV \
     # UID of the non-root user 'app'

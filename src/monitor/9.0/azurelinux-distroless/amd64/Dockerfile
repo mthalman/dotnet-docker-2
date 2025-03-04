@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/monitor/base
 
 # Installer image
-FROM mcr.microsoft.com/azurelinux/base/core:3.0 AS installer
+FROM mcr.microsoft.com/azurelinux/base/core:3.0@sha256:7caf6bede8a3fa62340581a6e5409ede9564b6866d18143ffd0b691c8f2cfcfc AS installer
 
 RUN tdnf install -y \
         ca-certificates \
@@ -27,6 +27,6 @@ RUN dotnet_monitor_extension_version=9.0.2 \
 
 
 # .NET Monitor image
-FROM $REPO:9.0.2-amd64
+FROM $REPO:9.0.2-amd64@sha256:75780fd4cc9c1aaff9957525ad2dcb2158fef049dd0bb5e9f19950a70c022dfa
 
 COPY --from=installer ["/app", "/app"]

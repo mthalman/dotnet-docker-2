@@ -1,6 +1,6 @@
 # Learn about building .NET container images:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-bookworm-slim-arm64v8 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-bookworm-slim-arm64v8@sha256:392dfe30a61be4f89b3b4425112e7dab34ed2056c4edf642c2c0b95a2b2eeb07 AS build
 ARG TARGETARCH
 RUN dpkg --add-architecture amd64 \
     && apt-get update \
@@ -26,7 +26,7 @@ RUN rm /app/*.dbg /app/*.Development.json
 
 
 # Final stage/image
-FROM mcr.microsoft.com/dotnet/runtime-deps:9.0
+FROM mcr.microsoft.com/dotnet/runtime-deps:9.0@sha256:8affebec88628680a6fd905d093491cd5932138becf24621ff84367717d9e335
 WORKDIR /app
 COPY --link --from=build /app .
 USER $APP_UID

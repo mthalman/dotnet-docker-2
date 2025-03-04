@@ -1,7 +1,7 @@
 # escape=`
 
 ARG REPO=mcr.microsoft.com/dotnet/runtime
-FROM $REPO:8.0.13-windowsservercore-ltsc2022
+FROM $REPO:8.0.13-windowsservercore-ltsc2022@sha256:e3a17ad857cf3808c3b1a6b9568852fb799908381ee600d1dfefeda2040e64d9
 
 # ASP.NET Core version
 ENV ASPNET_VERSION=8.0.13
