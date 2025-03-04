@@ -13,7 +13,7 @@ RUN aspnetcore_version=8.0.13 \
 
 
 # ASP.NET Core image
-FROM $REPO:8.0.13-bookworm-slim-amd64
+FROM $REPO:9.0.2-bookworm-slim-amd64@sha256:e0ac714c1c99cf2b30e655ebd0f4bd6736b1d960a21b2c061711e43474aa5632
 
 # ASP.NET Core version
 ENV ASPNET_VERSION=8.0.13
