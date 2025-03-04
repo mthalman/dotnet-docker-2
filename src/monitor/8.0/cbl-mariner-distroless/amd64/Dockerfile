@@ -27,6 +27,6 @@ RUN dotnet_monitor_extension_version=8.0.8 \
 
 
 # .NET Monitor image
-FROM $REPO:8.0.8-cbl-mariner-distroless-amd64
+FROM $REPO:8.1.0-cbl-mariner-distroless-amd64@sha256:8c0966f38c3ef5fe6b036a696f8173c4032af7926e081290e1d41ebc13677214
 
 COPY --from=installer ["/app", "/app"]

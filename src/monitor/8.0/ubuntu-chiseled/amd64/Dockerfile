@@ -21,6 +21,6 @@ RUN dotnet_monitor_extension_version=8.0.8 \
 
 
 # .NET Monitor image
-FROM $REPO:8.0.8-ubuntu-chiseled-amd64
+FROM $REPO:8.1.0-ubuntu-chiseled-amd64@sha256:029edbd01520a6ee84bc1c92d897c25cd04cb8168a90a20e58a571f5b3c8b6a4
 
 COPY --from=installer ["/app", "/app"]
