@@ -1,0 +1,9 @@
+{
+  "extends": [
+    "config:best-practices",
+    ":disableDependencyDashboard"
+  ],
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 0,
+  "recreateWhen": "always"
+}
