@@ -13,12 +13,9 @@ jobs:
   - checkout: self
   - script: >
       docker run
-      --env RENOVATE_REPOSITORIES
       --env LOG_LEVEL=debug
       --env RENOVATE_FORK_TOKEN
       --env RENOVATE_TOKEN
-      --env RENOVATE_CONFIG_FILE=/config/renovate.json
-      --volume $(Build.SourcesDirectory)/renovate.json:/config/renovate.json
       --rm
       ghcr.io/renovatebot/renovate:39
     env:
