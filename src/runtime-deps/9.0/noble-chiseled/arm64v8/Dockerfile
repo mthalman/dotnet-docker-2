@@ -1,4 +1,4 @@
-FROM arm64v8/buildpack-deps:noble-curl AS chisel
+FROM arm64v8/buildpack-deps:noble-curl@sha256:f84751aa458fc85130c723b28ca8f9d2d41b251a670788ba92c7c8ffe031c03b AS chisel
 
 RUN apt-get update && apt-get install -y file
 

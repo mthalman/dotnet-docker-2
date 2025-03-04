@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM arm64v8/buildpack-deps:bookworm-curl AS installer
+FROM arm64v8/buildpack-deps:bookworm-curl@sha256:a1be32243a395f7d75930f6dbff84188d8823f38d87ee68e92eb696cb4b6f5ed AS installer
 
 # Retrieve .NET Runtime
 RUN dotnet_version=9.0.2 \
@@ -14,7 +14,7 @@ RUN dotnet_version=9.0.2 \
 
 
 # .NET runtime image
-FROM $REPO:9.0.2-bookworm-slim-arm64v8
+FROM $REPO:9.0.2-bookworm-slim-arm64v8@sha256:c2eecb68377a08fd4820448b01cda3567d24fb622eb4ef8ce71140ca5014c1ac
 
 # .NET Runtime version
 ENV DOTNET_VERSION=9.0.2

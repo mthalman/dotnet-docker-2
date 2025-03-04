@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM amd64/buildpack-deps:noble-curl AS installer
+FROM amd64/buildpack-deps:noble-curl@sha256:7216a1c4658eecde0bf28e7f6856dbd6669ac76c7d019a380f932f00ae61c8e0 AS installer
 
 # Retrieve ASP.NET Composite Runtime
 RUN aspnetcore_version=8.0.13  \
@@ -17,7 +17,7 @@ RUN mkdir /dotnet-symlink \
 
 
 # ASP.NET Composite Image
-FROM $REPO:8.0.13-noble-chiseled-amd64
+FROM $REPO:8.0.13-noble-chiseled-amd64@sha256:7a6898e842d4771b0c4efa3e319b51564e286e595f5dc1d313898fb5ea01cf73
 
 ENV \
     # .NET Runtime version

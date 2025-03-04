@@ -1,7 +1,7 @@
-# syntax=docker/dockerfile:1
+# syntax=docker/dockerfile:1@sha256:93bfd3b68c109427185cd78b4779fc82b484b0b7618e36d0f104d4d801e66d25
 # Learn about building .NET container images:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
-FROM mcr.microsoft.com/dotnet/nightly/sdk:9.0-azurelinux3.0-aot AS build
+FROM mcr.microsoft.com/dotnet/nightly/sdk:9.0-azurelinux3.0-aot@sha256:69eb76629050756872aa2322ae1af3423fb91cd9f2347eba69808917c8b58d1b AS build
 ARG TARGETARCH
 WORKDIR /source
 
@@ -18,7 +18,7 @@ RUN rm /app/*.dbg /app/*.Development.json
 
 
 # Final stage/image
-FROM mcr.microsoft.com/dotnet/nightly/runtime-deps:9.0-azurelinux3.0-distroless-aot
+FROM mcr.microsoft.com/dotnet/nightly/runtime-deps:9.0-azurelinux3.0-distroless-aot@sha256:752c13141f2462420f0da92be52c1713613f6f4b73b722c57b192b178f098f12
 WORKDIR /app
 COPY --link --from=build /app .
 USER $APP_UID

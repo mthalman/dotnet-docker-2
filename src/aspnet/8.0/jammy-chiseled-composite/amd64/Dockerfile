@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM amd64/buildpack-deps:jammy-curl AS installer
+FROM amd64/buildpack-deps:jammy-curl@sha256:552e33e44f19a79219858ab0e7789e5345c502bede991fbf435f51640d4c7e2d AS installer
 
 # Retrieve ASP.NET Composite Runtime
 RUN aspnetcore_version=8.0.13  \
@@ -17,7 +17,7 @@ RUN mkdir /dotnet-symlink \
 
 
 # ASP.NET Composite Image
-FROM $REPO:8.0.13-jammy-chiseled-amd64
+FROM $REPO:8.0.13-jammy-chiseled-amd64@sha256:705134e5c434e9dc317d0fa3d33130756668fe806a395cf4c0876ae951cf9832
 
 ENV \
     # .NET Runtime version

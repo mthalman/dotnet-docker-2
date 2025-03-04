@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime
 
 # Installer image
-FROM $REPO:8.0.13-cbl-mariner2.0-arm64v8 AS installer
+FROM $REPO:8.0.13-cbl-mariner2.0-arm64v8@sha256:9e58f3190f6e8370eeb76bed2562ad993fc312c52c9a12cab0e952bb2f2a3dc2 AS installer
 
 RUN tdnf install -y \
         tar \
@@ -17,7 +17,7 @@ RUN aspnetcore_version=8.0.13 \
 
 
 # ASP.NET Core image
-FROM $REPO:8.0.13-cbl-mariner2.0-arm64v8
+FROM $REPO:8.0.13-cbl-mariner2.0-arm64v8@sha256:9e58f3190f6e8370eeb76bed2562ad993fc312c52c9a12cab0e952bb2f2a3dc2
 
 # ASP.NET Core version
 ENV ASPNET_VERSION=8.0.13

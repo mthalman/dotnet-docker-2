@@ -2,7 +2,7 @@
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
 
 # build copies all project files and restores NuGet packages
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0@sha256:1025bed126a7b85c56b960215ab42a99db97a319a72b5d902383ebf6c6e62bbe AS build
 ARG TARGETARCH
 WORKDIR /source
 
@@ -41,7 +41,7 @@ RUN dotnet publish -a $TARGETARCH --no-restore -o /app
 
 
 # final is the final runtime stage for running the app
-FROM mcr.microsoft.com/dotnet/runtime:9.0 AS final
+FROM mcr.microsoft.com/dotnet/runtime:9.0@sha256:f50efa2ae5fdb6c100d691b599dae5b1265520371bf79850ec46cf43cd73810d AS final
 WORKDIR /app
 COPY --link --from=publish /app .
 ENTRYPOINT ["dotnet", "complexapp.dll"]

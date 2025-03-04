@@ -1,7 +1,7 @@
 # escape=`
 
 # Installer image
-FROM mcr.microsoft.com/windows/servercore:ltsc2025-amd64 AS installer
+FROM mcr.microsoft.com/windows/servercore:ltsc2025-amd64@sha256:cd61ef2ef2be1cd20e06686d3b554843e5d713017037e108788ad3417ff981c1 AS installer
 
 # Retrieve .NET Runtime
 RUN powershell -Command `
@@ -22,7 +22,7 @@ RUN powershell -Command `
 
 
 # Runtime image
-FROM mcr.microsoft.com/windows/nanoserver:ltsc2025-amd64
+FROM mcr.microsoft.com/windows/nanoserver:ltsc2025-amd64@sha256:fab5bcfc17ba57551db12efcb78dc752c5097e3b6a501389925d7d447c0c819a
 
 ENV `
     # Configure web servers to bind to port 8080 when present

@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0 AS installer
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0@sha256:2a5d3461de4c082b1ced83a491c0d83b80221311dbee1b6f0a98271cefe57b00 AS installer
 
 RUN tdnf install -y \
         ca-certificates \
@@ -23,7 +23,7 @@ RUN mkdir /dotnet-symlink \
 
 
 # ASP.NET Composite Image
-FROM $REPO:8.0.13-cbl-mariner2.0-distroless-extra-amd64
+FROM $REPO:8.0.13-cbl-mariner2.0-distroless-extra-amd64@sha256:7119e75c041efdf9162b409783771588c17e8acfc7c1399f6838be69d697f26d
 
 ENV \
     # .NET Runtime version

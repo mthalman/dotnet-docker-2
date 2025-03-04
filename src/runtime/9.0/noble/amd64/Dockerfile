@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM amd64/buildpack-deps:noble-curl AS installer
+FROM amd64/buildpack-deps:noble-curl@sha256:7216a1c4658eecde0bf28e7f6856dbd6669ac76c7d019a380f932f00ae61c8e0 AS installer
 
 # Retrieve .NET Runtime
 RUN dotnet_version=9.0.2 \
@@ -14,7 +14,7 @@ RUN dotnet_version=9.0.2 \
 
 
 # .NET runtime image
-FROM $REPO:9.0.2-noble-amd64
+FROM $REPO:9.0.2-noble-amd64@sha256:ab166328407348f6fb832bdbeb5855cf0e5aad2837cf42a141e9feee5bca5e01
 
 # .NET Runtime version
 ENV DOTNET_VERSION=9.0.2

@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM mcr.microsoft.com/azurelinux/base/core:3.0 AS installer
+FROM mcr.microsoft.com/azurelinux/base/core:3.0@sha256:7caf6bede8a3fa62340581a6e5409ede9564b6866d18143ffd0b691c8f2cfcfc AS installer
 
 RUN tdnf install -y \
         ca-certificates \
@@ -23,7 +23,7 @@ RUN mkdir /dotnet-symlink \
 
 
 # .NET runtime image
-FROM $REPO:8.0.13-azurelinux3.0-distroless-extra-amd64
+FROM $REPO:8.0.13-azurelinux3.0-distroless-extra-amd64@sha256:fb5299d4a6cb6d4cf9027e30fa502a25d5fe3c94b153fe76f084a62866811aeb
 
 # .NET Runtime version
 ENV DOTNET_VERSION=8.0.13

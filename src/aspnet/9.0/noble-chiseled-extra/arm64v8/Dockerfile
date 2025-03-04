@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime
 
 # Installer image
-FROM arm64v8/buildpack-deps:noble-curl AS installer
+FROM arm64v8/buildpack-deps:noble-curl@sha256:f84751aa458fc85130c723b28ca8f9d2d41b251a670788ba92c7c8ffe031c03b AS installer
 
 # Retrieve ASP.NET Core
 RUN aspnetcore_version=9.0.2 \
@@ -14,7 +14,7 @@ RUN aspnetcore_version=9.0.2 \
 
 
 # ASP.NET Core image
-FROM $REPO:9.0.2-noble-chiseled-extra-arm64v8
+FROM $REPO:9.0.2-noble-chiseled-extra-arm64v8@sha256:38fd149827ff2456ed80ab22fb5b022b195e7446bf8457f8a13f67661c5ccdbb
 
 # ASP.NET Core version
 ENV ASPNET_VERSION=9.0.2

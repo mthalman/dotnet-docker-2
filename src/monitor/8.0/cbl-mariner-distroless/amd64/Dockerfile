@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/monitor/base
 
 # Installer image
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0 AS installer
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0@sha256:2a5d3461de4c082b1ced83a491c0d83b80221311dbee1b6f0a98271cefe57b00 AS installer
 
 RUN tdnf install -y \
         ca-certificates \
@@ -27,6 +27,6 @@ RUN dotnet_monitor_extension_version=8.0.8 \
 
 
 # .NET Monitor image
-FROM $REPO:8.0.8-cbl-mariner-distroless-amd64
+FROM $REPO:8.0.8-cbl-mariner-distroless-amd64@sha256:4e0f9c14ba07a3e8f198d52f583754859ba6caf20aa48eb96ccbb2ee04ff6c53
 
 COPY --from=installer ["/app", "/app"]

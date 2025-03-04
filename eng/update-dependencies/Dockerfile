@@ -1,5 +1,5 @@
 # build image
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-alpine AS build-env
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-alpine@sha256:c439a8d5fef241d04858145e777a460ec0e6c8fec8e518b41cdee4e37321f306 AS build-env
 ARG TARGETARCH
 # The rid must be version-specific to workaround a libgit2sharp issue (see https://github.com/dotnet/dotnet-docker/pull/2111)
 ARG RID=linux-musl-$TARGETARCH
@@ -20,7 +20,7 @@ RUN dotnet publish -r $RID /p:UseRidGraph=true -c Release -o out --no-restore
 
 
 # runtime image
-FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine
+FROM mcr.microsoft.com/dotnet/sdk:9.0-alpine@sha256:c439a8d5fef241d04858145e777a460ec0e6c8fec8e518b41cdee4e37321f306
 
 # install Docker
 RUN apk add --no-cache \

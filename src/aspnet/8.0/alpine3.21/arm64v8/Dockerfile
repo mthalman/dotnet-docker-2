@@ -1,5 +1,5 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime
-FROM $REPO:8.0.13-alpine3.21-arm64v8
+FROM $REPO:8.0.13-alpine3.21-arm64v8@sha256:2881a57486433ad297dd1a7340a506e440002f03bdb90829e0208ef8d99ee55a
 
 # .NET globalization APIs will use invariant mode by default because DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=true is set
 # by the base runtime-deps image. See https://aka.ms/dotnet-globalization-alpine-containers for more information.

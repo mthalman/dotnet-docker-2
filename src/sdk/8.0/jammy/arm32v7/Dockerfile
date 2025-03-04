@@ -1,5 +1,5 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
-FROM $REPO:8.0.13-jammy-arm32v7
+FROM $REPO:8.0.13-jammy-arm32v7@sha256:7c5d00247d001c8b263ac6aacc6beae8edf5e8345d228fdf7743ada1f8074ba9
 
 ENV \
     # Do not generate certificate

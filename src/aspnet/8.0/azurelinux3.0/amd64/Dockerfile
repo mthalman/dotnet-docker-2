@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime
 
 # Installer image
-FROM $REPO:8.0.13-azurelinux3.0-amd64 AS installer
+FROM $REPO:8.0.13-azurelinux3.0-amd64@sha256:9d94e3bddbafb2427e12bdfb14bf488736a76f428bda9f9ce19c939e82d50154 AS installer
 
 RUN tdnf install -y \
         tar \
@@ -17,7 +17,7 @@ RUN aspnetcore_version=8.0.13 \
 
 
 # ASP.NET Core image
-FROM $REPO:8.0.13-azurelinux3.0-amd64
+FROM $REPO:8.0.13-azurelinux3.0-amd64@sha256:9d94e3bddbafb2427e12bdfb14bf488736a76f428bda9f9ce19c939e82d50154
 
 # ASP.NET Core version
 ENV ASPNET_VERSION=8.0.13

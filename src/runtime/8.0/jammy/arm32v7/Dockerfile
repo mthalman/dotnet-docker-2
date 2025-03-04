@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM arm32v7/buildpack-deps:jammy-curl AS installer
+FROM arm32v7/buildpack-deps:jammy-curl@sha256:d44b9c225547b3b2ef90485327c66aeecd10469b9181c23ec31f3452ed41eb06 AS installer
 
 # Retrieve .NET Runtime
 RUN dotnet_version=8.0.13 \
@@ -14,7 +14,7 @@ RUN dotnet_version=8.0.13 \
 
 
 # .NET runtime image
-FROM $REPO:8.0.13-jammy-arm32v7
+FROM $REPO:8.0.13-jammy-arm32v7@sha256:d29c65706cf96b0af764978dd927934c55f5e3a2a0e7178d2484101ad91901cf
 
 # .NET Runtime version
 ENV DOTNET_VERSION=8.0.13

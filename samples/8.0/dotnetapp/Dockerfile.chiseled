@@ -1,6 +1,6 @@
 # Learn about building .NET container images:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-jammy AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:8.0-jammy@sha256:c014f69491c484c0bb9194774f135985912c3810dfc2837af3f1a44ca98a2d8c AS build
 ARG TARGETARCH
 WORKDIR /source
 
@@ -14,7 +14,7 @@ RUN dotnet publish -a $TARGETARCH --no-restore -o /app
 
 
 # final stage/image
-FROM mcr.microsoft.com/dotnet/runtime:8.0-jammy-chiseled
+FROM mcr.microsoft.com/dotnet/runtime:8.0-jammy-chiseled@sha256:2a384c45389c370cbdfdbdfd388b63aa089d57e355d0a354a127ab3f56c72055
 WORKDIR /app
 COPY --from=build /app .
 ENTRYPOINT ["./dotnetapp"]

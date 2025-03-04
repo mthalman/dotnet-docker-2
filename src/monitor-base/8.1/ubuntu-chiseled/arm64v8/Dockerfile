@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
 
 # Installer image
-FROM arm64v8/buildpack-deps:jammy-curl AS installer
+FROM arm64v8/buildpack-deps:jammy-curl@sha256:07b40ebd2042f108df1754be054182d9be17ff062c45d3b1182b3a6436a2ea55 AS installer
 
 # Retrieve .NET Monitor Base
 RUN dotnet_monitor_version=8.1.0 \
@@ -14,7 +14,7 @@ RUN dotnet_monitor_version=8.1.0 \
 
 
 # .NET Monitor Base image
-FROM $REPO:8.0.13-jammy-chiseled-arm64v8
+FROM $REPO:8.0.13-jammy-chiseled-arm64v8@sha256:b4574f2bf4f0e9f4ab5af18744868e375ebccd838e31f0482eca42b763a6627a
 
 WORKDIR /app
 COPY --from=installer /app .

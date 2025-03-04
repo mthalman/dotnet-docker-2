@@ -1,6 +1,6 @@
 # Learn about building .NET container images:
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/README.md
-FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-azurelinux3.0 AS build
+FROM --platform=$BUILDPLATFORM mcr.microsoft.com/dotnet/sdk:9.0-azurelinux3.0@sha256:3a6b3fb7fe65ca7acb3354451c48521f8e4bcd51dea949c82bb152959020076f AS build
 ARG TARGETARCH
 WORKDIR /source
 
@@ -15,7 +15,7 @@ RUN dotnet publish -a $TARGETARCH --self-contained --no-restore -o /app
 
 # Final stage
 # Since the app is self-contained, there's no dependency on the .NET Runtime.
-FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-azurelinux3.0-distroless
+FROM mcr.microsoft.com/dotnet/runtime-deps:9.0-azurelinux3.0-distroless@sha256:4d90ab65a65566038518b6109bd4c1f83b92afa6c38aca357642e105e7075772
 WORKDIR /app
 COPY --link --from=build /app .
 USER $APP_UID

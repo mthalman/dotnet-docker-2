@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime
 
 # Installer image
-FROM arm64v8/buildpack-deps:jammy-curl AS installer
+FROM arm64v8/buildpack-deps:jammy-curl@sha256:07b40ebd2042f108df1754be054182d9be17ff062c45d3b1182b3a6436a2ea55 AS installer
 
 # Retrieve ASP.NET Core
 RUN aspnetcore_version=8.0.13 \
@@ -13,7 +13,7 @@ RUN aspnetcore_version=8.0.13 \
 
 
 # ASP.NET Core image
-FROM $REPO:8.0.13-jammy-arm64v8
+FROM $REPO:8.0.13-jammy-arm64v8@sha256:e6aa13f60aa628f8cc0f9343eaf7a138a627bbefcab699e567a4e303f9f57d27
 
 # ASP.NET Core version
 ENV ASPNET_VERSION=8.0.13

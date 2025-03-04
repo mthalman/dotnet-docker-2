@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
 
 # Installer image
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0 AS installer
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0@sha256:2a5d3461de4c082b1ced83a491c0d83b80221311dbee1b6f0a98271cefe57b00 AS installer
 
 RUN tdnf install -y \
         ca-certificates \
@@ -20,7 +20,7 @@ RUN dotnet_monitor_version=8.1.0 \
 
 
 # .NET Monitor Base image
-FROM $REPO:8.0.13-cbl-mariner2.0-distroless-amd64
+FROM $REPO:8.0.13-cbl-mariner2.0-distroless-amd64@sha256:f4c06f5f5e059bb38487b63a38e6241f146d30324a6668e69d85de0e911519bf
 
 WORKDIR /app
 COPY --from=installer /app .

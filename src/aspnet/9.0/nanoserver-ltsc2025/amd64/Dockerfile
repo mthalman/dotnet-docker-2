@@ -3,7 +3,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime
 
 # Installer image
-FROM mcr.microsoft.com/windows/servercore:ltsc2025-amd64 AS installer
+FROM mcr.microsoft.com/windows/servercore:ltsc2025-amd64@sha256:cd61ef2ef2be1cd20e06686d3b554843e5d713017037e108788ad3417ff981c1 AS installer
 
 # Install ASP.NET Core Runtime
 RUN powershell -Command `
@@ -24,7 +24,7 @@ RUN powershell -Command `
 
 
 # ASP.NET Core image
-FROM $REPO:9.0.2-nanoserver-ltsc2025
+FROM $REPO:9.0.2-nanoserver-ltsc2025@sha256:9ee32e370a6537e94a8e980e272298d05059b0c00ee519eecf0cfd99cff097f9
 
 # ASP.NET Core version
 ENV ASPNET_VERSION=9.0.2

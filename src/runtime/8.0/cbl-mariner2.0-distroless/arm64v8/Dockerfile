@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0 AS installer
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0@sha256:2a5d3461de4c082b1ced83a491c0d83b80221311dbee1b6f0a98271cefe57b00 AS installer
 
 RUN tdnf install -y \
         ca-certificates \
@@ -23,7 +23,7 @@ RUN mkdir /dotnet-symlink \
 
 
 # .NET runtime image
-FROM $REPO:8.0.13-cbl-mariner2.0-distroless-arm64v8
+FROM $REPO:8.0.13-cbl-mariner2.0-distroless-arm64v8@sha256:038aa77c796cfbaeb2d64de3a20c75882e3f97b494663a80a0e975b7fde67a73
 
 # .NET Runtime version
 ENV DOTNET_VERSION=8.0.13

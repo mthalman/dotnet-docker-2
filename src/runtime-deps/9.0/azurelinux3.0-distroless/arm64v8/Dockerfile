@@ -1,5 +1,5 @@
 # Installer image
-FROM mcr.microsoft.com/azurelinux/base/core:3.0 AS installer
+FROM mcr.microsoft.com/azurelinux/base/core:3.0@sha256:7caf6bede8a3fa62340581a6e5409ede9564b6866d18143ffd0b691c8f2cfcfc AS installer
 
 RUN tdnf install -y \
         gawk \
@@ -19,7 +19,7 @@ RUN mkdir /staging \
     && tdnf clean all --releasever=3.0 --installroot /staging
 
 # Generate RPM manifest file by appending to the original manifest file from base distroless image
-COPY --from=mcr.microsoft.com/azurelinux/distroless/minimal:3.0 /var/lib/rpmmanifest/container-manifest-2 /tmp/rpmmanifest
+COPY --from=mcr.microsoft.com/azurelinux/distroless/minimal:3.0@sha256:e9ce81518e4b8119062762dfe82f3fc4888a7cae3fdea58649a5e383ca464113 /var/lib/rpmmanifest/container-manifest-2 /tmp/rpmmanifest
 RUN tmpManifestPath="/tmp/rpmmanifest" \
     && rpm --query --all --queryformat "%{NAME}\t%{VERSION}-%{RELEASE}\t%{INSTALLTIME}\t%{BUILDTIME}\t%{VENDOR}\t%{EPOCH}\t%{SIZE}\t%{ARCH}\t%{EPOCHNUM}\t%{SOURCERPM}\n" --root /staging | grep -v gpg-pubkey >> $tmpManifestPath \
     && mkdir -p /staging/var/lib/rpmmanifest \
@@ -52,7 +52,7 @@ RUN rm -rf /staging/etc/tdnf \
 
 
 # .NET runtime-deps image
-FROM mcr.microsoft.com/azurelinux/distroless/minimal:3.0
+FROM mcr.microsoft.com/azurelinux/distroless/minimal:3.0@sha256:e9ce81518e4b8119062762dfe82f3fc4888a7cae3fdea58649a5e383ca464113
 
 ENV \
     # UID of the non-root user 'app'

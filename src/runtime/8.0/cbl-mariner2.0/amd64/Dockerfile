@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM $REPO:8.0.13-cbl-mariner2.0-amd64 AS installer
+FROM $REPO:8.0.13-cbl-mariner2.0-amd64@sha256:186ccab13e3924d807f73f866da0afbbfffc5b51a979d4b9e703006c645df8a2 AS installer
 
 RUN tdnf install -y \
         tar \
@@ -18,7 +18,7 @@ RUN dotnet_version=8.0.13 \
 
 
 # .NET runtime image
-FROM $REPO:8.0.13-cbl-mariner2.0-amd64
+FROM $REPO:8.0.13-cbl-mariner2.0-amd64@sha256:186ccab13e3924d807f73f866da0afbbfffc5b51a979d4b9e703006c645df8a2
 
 # .NET Runtime version
 ENV DOTNET_VERSION=8.0.13

@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/runtime-deps
 
 # Installer image
-FROM $REPO:8.0.13-azurelinux3.0-amd64 AS installer
+FROM $REPO:8.0.13-azurelinux3.0-amd64@sha256:03eaeba764656bde36591709d6224f22bd9c39643567d61b8ef3ae1bbe3f2684 AS installer
 
 RUN tdnf install -y \
         tar \
@@ -18,7 +18,7 @@ RUN dotnet_version=8.0.13 \
 
 
 # .NET runtime image
-FROM $REPO:8.0.13-azurelinux3.0-amd64
+FROM $REPO:8.0.13-azurelinux3.0-amd64@sha256:03eaeba764656bde36591709d6224f22bd9c39643567d61b8ef3ae1bbe3f2684
 
 # .NET Runtime version
 ENV DOTNET_VERSION=8.0.13

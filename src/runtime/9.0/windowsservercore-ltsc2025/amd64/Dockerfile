@@ -1,6 +1,6 @@
 # escape=`
 
-FROM mcr.microsoft.com/windows/servercore:ltsc2025-amd64
+FROM mcr.microsoft.com/windows/servercore:ltsc2025-amd64@sha256:cd61ef2ef2be1cd20e06686d3b554843e5d713017037e108788ad3417ff981c1
 
 ENV `
     # Configure web servers to bind to port 8080 when present

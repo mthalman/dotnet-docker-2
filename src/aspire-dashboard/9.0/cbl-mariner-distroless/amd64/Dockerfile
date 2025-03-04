@@ -1,7 +1,7 @@
 ARG REPO=mcr.microsoft.com/dotnet/aspnet
 
 # Installer image
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0 AS installer
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0@sha256:2a5d3461de4c082b1ced83a491c0d83b80221311dbee1b6f0a98271cefe57b00 AS installer
 
 RUN tdnf install -y \
         ca-certificates \
@@ -19,7 +19,7 @@ RUN dotnet_aspire_version=9.0.0-preview.5.24551.3 \
 
 
 # Aspire Dashboard image
-FROM $REPO:8.0.13-cbl-mariner2.0-distroless-extra-amd64
+FROM $REPO:8.0.13-cbl-mariner2.0-distroless-extra-amd64@sha256:c808333132597b4212d2d3f9a438ce36bb52b99620002f193e83d2e8540ebe0c
 
 WORKDIR /app
 COPY --from=installer /app .
