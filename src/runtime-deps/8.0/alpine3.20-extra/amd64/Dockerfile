@@ -1,4 +1,4 @@
-FROM amd64/alpine:3.20
+FROM amd64/alpine:3.21@sha256:3df19e59930618e9eb2058d4682869df959283d56b988456ff8067f8e92dc958
 
 ENV \
     # UID of the non-root user 'app'
