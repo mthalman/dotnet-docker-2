@@ -1,4 +1,4 @@
-FROM arm32v7/alpine:3.20
+FROM arm32v7/alpine:3.21@sha256:cc78a48eac373e179787cb7c68997142ad6575449520d4e4788df530ba468a5e
 
 ENV \
     # UID of the non-root user 'app'
