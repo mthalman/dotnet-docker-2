@@ -22,7 +22,8 @@ jobs:
       --volume /tmp:/tmp
       --rm
       ghcr.io/renovatebot/renovate:39
+    #--env RENOVATE_GIT_AUTHOR=mthalman@microsoft.com
     env:
       RENOVATE_REPOSITORIES: mthalman/dotnet-docker-2
       RENOVATE_FORK_TOKEN: $(RENOVATE_FORK_TOKEN)
-      RENOVATE_TOKEN: $(RENOVATE_TOKEN)
+      RENOVATE_TOKEN: $(RENOVATE_FORK_TOKEN)
