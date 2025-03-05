@@ -17,12 +17,12 @@ jobs:
       --env RENOVATE_FORK_TOKEN
       --env RENOVATE_TOKEN
       --env LOG_LEVEL=debug
+      --env RENOVATE_GIT_AUTHOR=mthalman@microsoft.com
       --env RENOVATE_CONFIG_FILE=/config/renovate.json
       --volume $(Build.SourcesDirectory)/eng/renovate.json:/config/renovate.json
       --volume /tmp:/tmp
       --rm
       ghcr.io/renovatebot/renovate:39
-    #--env RENOVATE_GIT_AUTHOR=mthalman@microsoft.com
     env:
       RENOVATE_REPOSITORIES: mthalman/dotnet-docker-2
       RENOVATE_FORK_TOKEN: $(RENOVATE_FORK_TOKEN)
