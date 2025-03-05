@@ -17,7 +17,7 @@ jobs:
       --env RENOVATE_FORK_TOKEN
       --env RENOVATE_TOKEN
       --env LOG_LEVEL=debug
-      --env RENOVATE_GIT_AUTHOR=mthalman@microsoft.com
+      --env RENOVATE_GIT_AUTHOR="Matt Thalman <mthalman@microsoft.com>"
       --env RENOVATE_CONFIG_FILE=/config/renovate.json
       --volume $(Build.SourcesDirectory)/eng/renovate.json:/config/renovate.json
       --volume /tmp:/tmp
