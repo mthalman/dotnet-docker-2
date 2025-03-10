@@ -14,7 +14,7 @@ parameters:
   type: boolean
   default: false
   displayName: CG Dry Run
-
+ 
 variables:
 - template: /eng/common/templates/variables/common.yml@self
 - name: skipComponentGovernanceDetection
