@@ -6,7 +6,7 @@
   "requireConfig": false,
   "extends": [
     "config:recommended",
-    ":disabledependencyDashboard"
+    ":disableDependencyDashboard"
   ],
   "packageRules": [
     {
