@@ -1,29 +1,7 @@
 trigger: none
 pr: none
 
-variables:
-- group: Renovate Test
-
 jobs:
-- job: Renovate
-  displayName: Run Renovate
-  pool:
-    vmImage: ubuntu-latest
-  steps:
-  - checkout: self
-  - script: >
-      docker run
-      --env RENOVATE_REPOSITORIES
-      --env RENOVATE_FORK_TOKEN
-      --env RENOVATE_TOKEN
-      --env LOG_LEVEL=debug
-      --env RENOVATE_GIT_AUTHOR="Matt Thalman <mthalman@microsoft.com>"
-      --env RENOVATE_CONFIG_FILE=/config/renovate.json
-      --volume $(Build.SourcesDirectory)/eng/renovate.json:/config/renovate.json
-      --volume /tmp:/tmp
-      --rm
-      ghcr.io/renovatebot/renovate:39
-    env:
-      RENOVATE_REPOSITORIES: mthalman/dotnet-docker-2
-      RENOVATE_FORK_TOKEN: $(RENOVATE_FORK_TOKEN)
-      RENOVATE_TOKEN: $(RENOVATE_FORK_TOKEN)
+- template: eng/common/templates-official/job/renovate.yml
+  parameters:
+    gitHubRepo: 'mthalman/dotnet-docker-2'
