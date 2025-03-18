@@ -16,6 +16,7 @@ jobs:
     vmImage: ubuntu-latest
   steps:
   - checkout: self
+    fetchDepth: 1
   - script: >
       docker run
       --env RENOVATE_REPOSITORIES
@@ -28,6 +29,7 @@ jobs:
       --volume /tmp:/tmp
       --rm
       ghcr.io/renovatebot/renovate:39
+    displayName: Run Renovate
     env:
       RENOVATE_REPOSITORIES: ${{parameters.gitHubRepo}}
       RENOVATE_FORK_TOKEN: $(RENOVATE_FORK_TOKEN)

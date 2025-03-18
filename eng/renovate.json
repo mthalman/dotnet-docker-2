@@ -2,10 +2,15 @@
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "recreateWhen": "always",
+  "onboarding": false,
+  "requireConfig": false,
+  "extends": [
+    "config:recommended"
+  ],
   "packageRules": [
     {
       "groupName": "Pin build container images",
-      "matchPaths": [
+      "matchFileNames": [
         "eng/pipelines/common/templates/pipeline-with-resources.yml"
       ],
       "matchDatasources": [
