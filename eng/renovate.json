@@ -8,16 +8,29 @@
     //"config:recommended",
     ":disableDependencyDashboard"
   ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "matchStrings": [
+        "mcr\\.microsoft\\.com/dotnet-buildtools/prereqs:(?<currentValue>(\\d|\\w|-|\\.)+).*"
+      ],
+      "fileMatch": [
+        "eng/pipelines/common/templates/pipeline-with-resources.yml"
+      ],
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "mcr.microsoft.com/dotnet-buildtools/prereqs"
+    }
+  ],
   "packageRules": [
     {
       "groupName": "Pin build container images",
-      "matchFileNames": [
-        "eng/pipelines/common/templates/pipeline-with-resources.yml"
-      ],
       "matchDatasources": [
         "docker"
       ],
-      "matchPackageNames": ["foo"],
+      "fileMatch": [
+        "eng/pipelines/common/templates/pipeline-with-resources.yml"
+      ],
+      "matchPackageNames": ["mcr.microsoft.com/dotnet-buildtools/prereqs"],
       "pinDigests": true,
       "versioning": "loose"
     }
