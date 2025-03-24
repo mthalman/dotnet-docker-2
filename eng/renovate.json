@@ -3,9 +3,9 @@
   "prConcurrentLimit": 0,
   "recreateWhen": "always",
   "onboarding": false,
-  "requireConfig": false,
+  "requireConfig": "optional",
   "extends": [
-    "config:recommended",
+    //"config:recommended",
     ":disableDependencyDashboard"
   ],
   "packageRules": [
