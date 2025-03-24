@@ -17,7 +17,7 @@
       "matchDatasources": [
         "docker"
       ],
-      "matchPackageNames": ["mcr.microsoft.com/dotnet-buildtools/prereqs"],
+      "matchPackageNames": ["foo"],
       "pinDigests": true,
       "versioning": "loose"
     }
