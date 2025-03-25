@@ -19,6 +19,17 @@
       ],
       "datasourceTemplate": "docker",
       "depNameTemplate": "mcr.microsoft.com/dotnet-buildtools/prereqs"
+    },
+    {
+      "customType": "regex",
+      "matchStrings": [
+        "debian:(?<currentValue>(\\d|\\w|-|\\.)+).*"
+      ],
+      "fileMatch": [
+        "eng/pipelines/common/templates/pipeline-with-resources.yml"
+      ],
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "mcr.microsoft.com/dotnet-buildtools/prereqs"
     }
   ],
   "packageRules": [
@@ -27,10 +38,10 @@
       "matchDatasources": [
         "docker"
       ],
-      "fileMatch": [
+      "matchFileNames": [
         "eng/pipelines/common/templates/pipeline-with-resources.yml"
       ],
-      "matchPackageNames": ["mcr.microsoft.com/dotnet-buildtools/prereqs"],
+      //"matchPackageNames": ["mcr.microsoft.com/dotnet-buildtools/prereqs"],
       "pinDigests": true,
       "versioning": "loose"
     }
